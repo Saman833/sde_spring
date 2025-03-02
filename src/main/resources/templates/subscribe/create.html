@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Product Landing Page</title>
+    <title>Subscribe to Newsletter</title>
     <meta charset="UTF-8">
     <style>
         body {
@@ -10,7 +10,7 @@
             margin: 40px;
         }
         .container {
-            max-width: 500px;
+            max-width: 400px;
             margin: auto;
             padding: 20px;
             border: 1px solid #ddd;
@@ -18,7 +18,7 @@
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         }
         input[type="email"] {
-            width: 80%;
+            width: 90%;
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ccc;
@@ -36,12 +36,29 @@
             color: green;
             margin-top: 10px;
         }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .link {
+            margin-top: 15px;
+            display: block;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>Welcome to LearnByYou </h1>
-    <p>A revolutionary product designed to make your education easier by generating edu content based on your level.</p>
+    <h1>Subscribe to Our Newsletter</h1>
+    <form action="/subscribe/create" method="post">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit">Subscribe</button>
+    </form>
+
+    <p class="message" th:if="${message}" th:text="${message}"></p>
+    <p class="error" th:if="${error}" th:text="${error}"></p>
+
+    <a href="/subscribe/index" class="link">View Subscribers</a>
 </div>
 </body>
 </html>
+
