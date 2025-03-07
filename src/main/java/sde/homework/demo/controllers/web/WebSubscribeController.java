@@ -15,14 +15,10 @@ public class WebSubscribeController extends SubscribeController {
     public WebSubscribeController(SubscriberRepository subscriberRepository) {
         super(subscriberRepository);
     }
-
-    // Show the subscription page
     @GetMapping("subscribe/create")
     public String showCreatePage() {
         return "subscribe/create";
     }
-
-    // Handle subscription from landing page
     @PostMapping("subscribe/create")
     public String createSubscribe(@RequestParam("email") String email, HttpServletRequest request, Model model) {
         if (subscriberRepository.existsByEmail(email)) {
@@ -36,8 +32,6 @@ public class WebSubscribeController extends SubscribeController {
         model.addAttribute("message", "Thank you for subscribing with " + email + "!");
         return "subscribe/create";
     }
-
-    // View subscriber list
     @GetMapping("subscribe/index")
     public String indexSubscribe(Model model) {
         model.addAttribute("subscribers", subscriberRepository.findAll());

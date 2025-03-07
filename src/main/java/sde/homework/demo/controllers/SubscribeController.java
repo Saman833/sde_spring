@@ -12,7 +12,6 @@ public abstract class SubscribeController {
         this.subscriberRepository = subscriberRepository;
     }
 
-    // Common method for creating a subscriber
     protected Subscriber createSubscriber(String email, HttpServletRequest request, String source) {
         String ipAddress = request.getRemoteAddr();
         return new Subscriber(email, LocalDateTime.now(), ipAddress, source);

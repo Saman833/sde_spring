@@ -1,26 +1,12 @@
 package sde.homework.demo.repository;
 
-
-
 import sde.homework.demo.model.Subscriber;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
-@Repository
-public class SubscriberRepository {
-    private final List<Subscriber> subscribers = new ArrayList<>();
+public interface SubscriberRepository extends JpaRepository<Subscriber, Long> {
+    boolean existsByEmail(String email);
 
-    public void save(Subscriber subscriber) {
-        subscribers.add(subscriber);
-    }
-
-    public List<Subscriber> findAll() {
-        return subscribers;
-    }
-
-    public boolean existsByEmail(String email) {
-        return subscribers.stream().anyMatch(subscriber -> subscriber.getEmail().equalsIgnoreCase(email));
-    }
+    Optional<Subscriber> findByEmail(String email);
 }
