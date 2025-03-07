@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -36,11 +37,11 @@ public class ApiSubscribeController extends SubscribeController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(Map.of("message", "Subscription successful!", "email", email));
     }
-
-    // API to get all subscribers
     @GetMapping("/subscribe/index")
     public ResponseEntity<Object> getSubscribers() {
-        return ResponseEntity.ok(subscriberRepository.findAll());
+        List<Subscriber> subscribers = subscriberRepository.findAll();
+
+        return ResponseEntity.ok(Map.of("count", subscribers.size(), "subscribers", subscribers));
     }
 }
 
