@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/") // 👈 Handles Web Requests
 public class WebSubscribeController extends SubscribeController {
 
+    SubscriberRepository subscriberRepository;
     public WebSubscribeController(SubscriberRepository subscriberRepository) {
         super(subscriberRepository);
     }
@@ -21,6 +22,7 @@ public class WebSubscribeController extends SubscribeController {
     }
     @PostMapping("subscribe/create")
     public String createSubscribe(@RequestParam("email") String email, HttpServletRequest request, Model model) {
+
         if (subscriberRepository.existsByEmail(email)) {
             model.addAttribute("error", "This email is already subscribed!");
             return "subscribe/create";

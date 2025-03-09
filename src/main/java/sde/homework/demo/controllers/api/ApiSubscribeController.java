@@ -18,7 +18,7 @@ public class ApiSubscribeController extends SubscribeController {
     public ApiSubscribeController(SubscriberRepository subscriberRepository) {
         super(subscriberRepository);
     }
-
+    private SubscriberRepository subscriberRepository;
     // Handle API-based subscription
     @PostMapping("/subscribe/create")
     public ResponseEntity<Object> subscribe(@RequestBody Map<String, String> payload, HttpServletRequest request) {
