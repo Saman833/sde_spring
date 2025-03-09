@@ -15,8 +15,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import sde.homework.demo.model.Subscriber;
 
 @ExtendWith(SpringExtension.class)
-@DataJpaTest  // Loads only JPA components for testing
-@ActiveProfiles("test")  // Ensures we use application.properties in /test/resources
+@DataJpaTest
+@ActiveProfiles("test")
 class SubscriberRepositoryTest {
 
     @Autowired
@@ -26,7 +26,7 @@ class SubscriberRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        subscriberRepository.deleteAll(); // Ensure clean database before each test
+        subscriberRepository.deleteAll();
         testSubscriber = new Subscriber("test@example.com", LocalDateTime.now(), "192.168.1.1", "Test Source");
         subscriberRepository.save(testSubscriber);
     }
