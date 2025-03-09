@@ -6,13 +6,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 
 public abstract class SubscribeController {
-    protected final SubscriberRepository subscriberRepository;
+    final SubscriberRepository subscriberRepository;
 
     public SubscribeController(SubscriberRepository subscriberRepository) {
         this.subscriberRepository = subscriberRepository;
     }
 
-    protected Subscriber createSubscriber(String email, HttpServletRequest request, String source) {
+    public Subscriber createSubscriber(String email, HttpServletRequest request, String source) {
         String ipAddress = request.getRemoteAddr();
         return new Subscriber(email, LocalDateTime.now(), ipAddress, source);
     }

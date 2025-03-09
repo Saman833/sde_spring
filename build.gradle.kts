@@ -9,6 +9,9 @@ plugins {
 group = "sde.homework"
 version = "0.0.1-SNAPSHOT"
 
+tasks.test {
+	jvmArgs("-XX:+EnableDynamicAgentLoading")
+}
 
 
 java {
@@ -32,6 +35,10 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok:1.18.30") // ✅ UPDATED VERSION
 
 	runtimeOnly("mysql:mysql-connector-java:8.0.33")
+
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("com.h2database:h2")
+
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
