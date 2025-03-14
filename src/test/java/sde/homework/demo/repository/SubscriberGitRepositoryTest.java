@@ -17,7 +17,7 @@ import sde.homework.demo.model.Subscriber;
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 @ActiveProfiles("test")
-class SubscriberRepositoryTest {
+class SubscriberGitRepositoryTest {
 
     @Autowired
     private SubscriberRepository subscriberRepository;

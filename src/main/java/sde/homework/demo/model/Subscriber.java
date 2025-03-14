@@ -3,6 +3,7 @@ package sde.homework.demo.model;
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Entity
@@ -18,13 +19,18 @@ public class Subscriber {
     private String email;
 
     @Column(nullable = false)
-    private LocalDateTime createdAt;
-
-    @Column(nullable = false)
     private String ipAddress;
 
     @Column(nullable = false)
     private String source;
+
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
 
     public Subscriber() {
     }
